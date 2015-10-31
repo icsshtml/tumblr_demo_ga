@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <title>{Title}</title>
+    <meta name="color:Link Color" content="#000000"/>
+    <meta name="color:Body Color" content="grey"/>
+  </head>
+  <style>
+      * { font-weight: 400; }
+      body {  text-align: center; background-color: {color:body color}; margin-top: 125px; }
+      .posts { width: 80%; margin: 50px auto; }
+      article { background-color: white; }
+      .link { color: {color:link color}; border-bottom: 1px solid black; padding-bottom: 8px; transition: .2s; margin-left: 5px; margin-right: 5px;}
+      .link:hover { text-decoration: none; color: black; opacity: .1; }
+      a, a:hover { color: {color:link color}; text-decoration: none; }
+      img { width: 50%; margin: 30px auto; display: block;}
+      .center { width: 100%; margin: 30px auto; }
+      nav { position: fixed; width: 100%; background-color: white; top:0; height: 125px; }
+      .pagination {margin-bottom: 40px;}
+      h3 {font-size: 1.5em;}
+      .text { margin: 0 auto; max-width: 600px; line-height: 1.5;}
+    </style>
+  <body>
+    <nav>
+      <h1> {Title} </h1>
+        <a class="link" href="{BlogURL}">Home</a>
+        <a class="link" href="{BlogURL}about"> About</a>
+        <a class="link" href="{BlogURL}contact"> Contact </a>
+      </nav>
+        {block:Posts}
+            <div class="center">
+                <div class="text">
+                    {block:Text}
+                        {block:Title}
+                          <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
+                       {block:Date}<p>{ShortMonth} {DayOfMonth} | {Year} </p>{/block:Date}
+                          {Body}
+                            <article>
+                              <a href="{Permalink}">{NoteCountWithLabel}</a> |
+                              <a href={ReblogURL}>Reblog</a>
+                            </article>
+                            </div>
+                        <hr>
+                    {/block:Text}
+                    </div>
+                    {block:Photo}
+                        {block:Date}<p>{ShortMonth} {DayOfMonth} | {Year} </p>{/block:Date}
+                          <a href="{Permalink}"><img src="{PhotoURL-500}" class="imageclass" alt="{PhotoAlt}"/></a>
+                            {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                              <article>
+                                <a href="{Permalink}">{NoteCountWithLabel}</a> |
+                                <a href={ReblogURL}>Reblog</a>
+                              </article>
+                                   <hr>
+                           {/block:Photo}
+                    {block:Quote}
+                      {block:Date}<p>{ShortMonth} {DayOfMonth} | {Year} </p>{/block:Date}
+                        <h3><a href="{Permalink}">"{Quote}"</a></h3>
+                          {block:Source}<p>{Source}</p>{/block:Source}
+                              <article>
+                                <a href="{Permalink}">{NoteCountWithLabel}</a> |
+                                <a href={ReblogURL}>Reblog</a>
+                              </article>
+                                <hr>
+                    {/block:Quote}
+                      {block:Link}
+                         {block:Date}<p>{ShortMonth} {DayOfMonth} | {Year} </p>{/block:Date}
+                            <a href="{URL}" {Target}>{Name}</a>
+                              {block:Description}{Description}{/block:Description}
+                              <article>
+                                <a href="{Permalink}">{NoteCountWithLabel}</a> |
+                                <a href={ReblogURL}>Reblog</a>
+                              </article>
+                              <hr>
+                         {/block:Link}
+                    {block:Audio}
+                         {block:Date}<p>{ShortMonth} {DayOfMonth} | {Year} </p>{/block:Date}
+                              {AudioEmbed}{block:Caption}{Caption}{/block:Caption}
+                              <article>
+                                <a href="{Permalink}">{NoteCountWithLabel}</a> |
+                                <a href={ReblogURL}>Reblog</a>
+                              </article>
+                              <hr>
+                         {/block:Audio}
+                    {block:Video}
+                      {block:Date}<p>{ShortMonth} {DayOfMonth} | {Year} </p>{/block:Date}
+                                {Video-500}{block:Caption}
+                                    <div class="caption">{Caption}</div>
+                                {/block:Caption}
+                              <article>
+                                <a href="{Permalink}">{NoteCountWithLabel}</a> |
+                                <a href={ReblogURL}>Reblog</a>
+                              </article>
+                                <hr>
+                    {/block:Video}
+                        {block:PermalinkPage}
+                            <h4>Notes</h4>
+                              {block:PostNotes}<p>{PostNotes}</p>{/block:PostNotes}
+                        {/block:PermalinkPage}
+              {/block:Posts}
+              <div class="pagination">
+                  {block:Pagination}
+                    {block:PreviousPage}
+                      <a href="{PreviousPage}">Previous</a>
+                      {/block:PreviousPage}
+
+                    {block:NextPage}
+                    <a href="{NextPage}">Next</a>
+                      {/block:NextPage}
+                    {/block:Pagination}
+                </div>
+            </div>
+      </body>
+</html>
